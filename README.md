@@ -83,12 +83,99 @@ namespace Cafe
     }
 }
 
-Рис. 17 Код кнопки Добавить
+
 Рис. 18 Код кнопки Удалить
+// Кнопка удалить
 
+// Открывали соединение
+
+conn.Open();
+
+// Получаем выбранную строку
+
+DataGridViewRow selectedRow= dataGridView1.SelectedRows[0];
+
+// Получаем значения из выбранной строки
+
+string НомерСтопика selectedRow.Cells[8].Value.ToString();
+string Первое selectedRow.Cells[1].Value. ToString();
+
+string Bropoe
+selectedRow.Cells[2].Value. ToString();
+string Напитки = selected low.Cells[3].Value.ToString();
+
+string Датазаказы selectedRow.Cells[4].Value. ToString();
+
+string Статусзаказа selectedRow.Cells[5].Value. ToString();
+
+string Готовка selectedRow.Cells[6].Value.ToString();
+
+// Создаем команду удаления
+
+SqlCommand cmdDelete = new SqlCommand("DELETE FROM Заказы WHERE Номер Стопика (Номер Стопика", conn);
+cmdDelete Parameters.AddWithValue("Номер Стопика", Номерстопика);
+
+// Выполняем команду удаления
+
+cmdDelete ExecuteNonQuery);
+
+// Обновляем таблицу
+
+this.заказы TableAdapter.Fill(this.user35DataSet. Заказы);
+
+// Закрываем соединение
+
+conn.Close();
 Рис. 19 Код кнопки Редактировать
+// Кнопка Изменить
 
+// Открывави соединение.
+
+conn.Open();
+
+// Получает выбраннум строку
+
+DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+SqlCommand cadEdit new SqlCommand("UPDATE Заказы SET Первое Первое,
+
+                                                       Напитки, ДатаЗаказы ДатаЗакази,
+                                                       Второе - Второе, Напитки
+                                                       Статусзаказа СтатусЗаказа, Готовка
+                                                       Готовка WHERE НомерСтолика НомерСтопика", сonn);
+
+cndEdit. Parameters AddWithValue("Номер Стопика", textBox.Text);
+
+cudEdit Parameters.AddWithValue("Первое", textBox1.Text);
+
+cmdEdit. Parameters. AddWithValue("Второe", textBox3.Text);
+
+cmdEdit. Parameters. AddWithValue("Напитки", textBox7.Text);
+cndEdit.Parameters. AddWithValue("ДатаЗаказы", textBoxB.Text);
+
+cmdEdit Parameters. AddWithValue("Статус Заказа", textBox6. Text);
+
+cmdEdit Parameters. AddWithValue("Готовка", textBox5.Text);
+
+// Выполняем команду редактирования
+
+cmdEdit.ExecuteNonQuery();
+
+// Обновляем таблицу
+
+this. заказыTableAdapter.Fill(this.user35DataSet. Заказм);
+
+// Обновляем DataGridView
+
+dataGridView1.Refresh();
+
+// Закрываем соединение
+
+conn.Close();
 Рис. 20 Код кнопки Обновить
+// Кнопка Обновить
+
+this.заказыTableAdapter.Fill(this.user35DataSet.Заказы);
 
 Авторизация
 private const string connectionString = "Data Source=192.168.10.20;Initial Catalog=user35;User ID=user35;Password=34177";
