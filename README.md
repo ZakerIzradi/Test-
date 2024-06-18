@@ -26,6 +26,63 @@ form2.Show();
         }
 
 Рис. 16 Упрощение кода
+using System;
+using System.Data.SqlClient;
+
+namespace Cafe
+{
+    public partial class Form4 : Form
+    {
+        private String tbl;
+
+        private SqlConnection conn;
+
+        private SqlCommand cmd;
+
+        public Form4()
+        {
+            InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+
+            conn = new SqlConnection("Data Source=192.168.10.20;Initial Catalog=user35;User ID=user35;Password=34177");
+            cmd = new SqlCommand("insert into Заказ values (@НомерСтопика, @Первое, @Второе, @Напитки, @ДатаЗаказы, @СтатусЗаказа, @Готовка)", conn);
+
+            FormClosed += new FormClosedEventHandler(Form4_FormClosed);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            // Кнопка добавить
+
+            conn.Open();
+
+            cmd.Parameters.AddWithValue("@НомерСтопика", textBox4.Text);
+            cmd.Parameters.AddWithValue("@Первое", textBox1.Text);
+            cmd.Parameters.AddWithValue("@Второе", textBox3.Text);
+            cmd.Parameters.AddWithValue("@Напитки", textBox7.Text);
+            cmd.Parameters.AddWithValue("@ДатаЗаказы", textBox8.Text);
+            cmd.Parameters.AddWithValue("@СтатусЗаказа", textBox6.Text);
+            cmd.Parameters.AddWithValue("@Готовка", textBox5.Text);
+
+            cmd.ExecuteNonQuery();
+
+            // Обновляем таблицу
+            this.заказыTableAdapter.Fill(this.user35DataSet.Заказы);
+
+            // Закрываем соединение
+            conn.Close();
+        }
+
+        private void Form4_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+    }
+}
+
 Рис. 17 Код кнопки Добавить
 Рис. 18 Код кнопки Удалить
 
